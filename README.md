@@ -11,7 +11,14 @@ run it as
 password_generator
 
 It would output two strings, choose either. 
-Maybe substitute more special characters with underslashes, if the website places constraints.
+
+The strings look like
+
+oT@7tjAp+tjM'BdfGPkLGAA>4%KyS(m'
+pTJ)CXNXeM5MczrWk^VN(yaXwmdN?UMF
+
+
+Maybe substitute special characters with underslashes, if the website places constraints.
 
 # database_creator
 
