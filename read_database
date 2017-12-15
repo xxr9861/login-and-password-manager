@@ -1,0 +1,95 @@
+#! /bin/bash
+
+input_file=$@
+	mylist=()
+	create_item(){
+	     echo -n $line | grep -e $my_variable
+	    if [ $? == 0 ]
+	       then
+#echo -n \'
+echo -n $line | grep -e $my_variable
+#echo -n \'
+echo
+	    else
+		:
+		fi
+	}
+
+	
+	read_file_and_create_list(){
+	    oldifs=$IFS
+#	     IFS=$'\n'
+	   IFS=$'\r\n' GLOBIGNORE='*'
+#	   IFS=$(echo -en "\n\b")
+    while read line
+
+    do
+	# echo $my_variable
+#	echo $line | grep -e $my_variable
+	#mylist+=$(echo -n $line | grep $my_variable)
+	mylist+=$(create_item)
+	
+#	add to list =$(grep $line $my_variable)
+    done
+    IFS=$oldifs
+ #   echo ${mylist[@]}
+    }<$input_file
+
+
+prompt_user(){
+    echo please enter query
+    read my_variable
+    }
+
+display_a_menu(){
+    old_ifs=$IFS
+    IFS=$'\r\n' GLOBIGNORE='*'
+#     IFS=$'\n'
+#    options=(${mylist[@]})
+#    options=$mylist
+    select opt in ${mylist[@]}
+		  do
+    case opt in
+   
+	*)
+echo $opt
+	    put_out_stuff_on_clipboard $opt
+	    ;;
+    esac
+    done
+IFS=$old_ifs
+
+
+    }
+
+     put_out_stuff_on_clipboard(){
+	 firefox $(echo $opt | awk '{print $1}') > /dev/null 2>&1 &
+	 echo "putting the username in clipboard"
+	 echo "paste by pressing middle mouse button"
+	 echo $opt |awk '{print $2}' | xclip
+	 echo press enter to continue
+	 read junk 
+	 echo "putting the password into the clipboard"
+	 echo $1 | awk '{print $3}' | xclip
+
+	 }
+
+prompt_user
+read_file_and_create_list
+display_a_menu
+
+#      making array or list
+
+     
+# myarray=()
+# myarray+=('element one')
+# myarray+=('element two')
+
+# echo $myarray
+# lists out only the first element
+
+# echo ${myarray[@]}
+# lists out the entire array
+
+# echo ${mylist[@]}
+## inportant part in this script is the ifs thing
