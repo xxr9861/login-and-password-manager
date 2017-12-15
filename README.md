@@ -46,7 +46,7 @@ read_database database_file
 
 where database_file is the file that you created earlier and in which you stored your credentials.
 
-it would prompy you for a keyword, put in something like facebook or linkedin or reddit or twitter or the special tags that you p ut in earlier. It would grep though the lines and bring up a menu of the relevant login credentials. Choose the one you want.
+It would prompt you for a keyword, put in something like facebook or linkedin or reddit or twitter or the special tags that you p ut in earlier. It would grep though the lines and bring up a menu of the relevant login credentials. Choose the one you want.
 
 This action would open the website in firefox and copy your login id into the clipboard via xclip. In the login page, you click the middle mouse button to paste you login id. Go back to the terminal and press enter, this would copy the password to the clipboard or xclip. In the webpage go to the password field and middle click your mouse, thus pasting your password.
 
