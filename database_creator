@@ -1,0 +1,59 @@
+database_file=$@   #database file is whatever supplied on the command line
+#alias my_ifs='echo -n " "'
+
+prompter_for_each_record(){
+
+    echo site
+    read site
+    echo username
+    read username
+    echo password
+    read password
+    echo "tags (seperated by a single space)"
+    read tags
+}
+
+write_a_record(){
+    echo -n $site
+    echo -n " "
+    echo -n $username
+    echo -n " "
+    echo -n $password
+    echo -n " "
+    echo -n $tags
+    echo    #this will echo out a new line
+}
+
+start_new_record(){
+    echo starting a new record
+    echo press enter to start
+    read junk
+    prompter_for_each_record
+    display_the_input_data
+    start_new_record
+    }
+
+
+display_the_input_data(){
+    echo username: $username site: $site password: $password
+    echo are the above details correct
+    echo reply with yes or no
+    echo -ne ">>>>: "
+    read reply
+    if [ $reply == "yes" ]
+    then
+	echo writing data to record
+	write_a_record >> $database_file
+    elif [ $reply == "no" ]
+	 then
+	echo operation cancelled
+	echo press enter to start new record
+	read junk
+	start_new_record
+    else
+	echo please reply with yes or no
+    fi
+    
+    }
+
+start_new_record
