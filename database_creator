@@ -1,3 +1,5 @@
+#! /bin/bash
+
 database_file=$@   #database file is whatever supplied on the command line
 #alias my_ifs='echo -n " "'
 
